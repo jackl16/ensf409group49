@@ -4,3 +4,5 @@
    Do that for all your personal files and documents that are not source codes (.class files created when testing, etc)
 UPDATE: .gitignore file has been updated to exclude all .class and .jar files from being tracked. Only .java source codes
    will be tracked to commit now.
+2. Create your own branch to work on even on your forked repository to make it easier to keep track of the pull requests
+3. Leave meaningful pull request comments.
