@@ -16,7 +16,13 @@ UPDATE: .gitignore file has been updated to exclude all .class and .jar files fr
    - git merge upstream/main
    - git checkout <your branch>
    - git merge main
-   Now your local is updated
+     (Now your local is updated)
    - git checkout main
    - git push --all origin
-   Now all branches are updated on github
+     (Now all branches are updated on github)
+6. Steps to upload your new files or changed files to the main fork:
+   - Make sure you're working on your branch
+   - git add <file you want to upload>
+   - git commit -m "add your message here (make it meaningful)"
+   - git push
+   - After this go on to github and navigate to your branches and submit a pull request to ItsMarcoMSF/main.
