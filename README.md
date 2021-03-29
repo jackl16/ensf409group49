@@ -1,4 +1,4 @@
-(# ensf409group49
+# ensf409group49
 
 Authors: Marco, Jack, Minseung, Sina
 
