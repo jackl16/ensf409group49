@@ -1,3 +1,5 @@
+package edu.ucalgary.ensf409;
+
 public class Furniture {
     final String ID;
     final int PRICE;
