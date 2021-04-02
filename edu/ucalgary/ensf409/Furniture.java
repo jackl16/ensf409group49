@@ -1,3 +1,5 @@
+package edu.ucalgary.ensf409;
+
 public class Furniture {
     final String ID;
     final int PRICE;
@@ -27,32 +29,17 @@ public class Furniture {
         return TYPE;
     }
 
-    public void setID(String ID) {
-        this.ID = ID;
-    }
-
-    public void setPRICE(int PRICE) {
-        this.PRICE = PRICE;
-    }
-
-    public void setMANUID(String MANUID) {
-        this.MANUID = MANUID;
-    }
-
-    public void setTYPE(String TYPE) {
-        this.TYPE = TYPE;
-    }
-
 }
 
 class Chair extends Furniture{
-    private char legs;
-    private char arms;
-    private char seat;
-    private char cushion;
-    private boolean usable;
+    private int legs;
+    private int arms;
+    private int seat;
+    private int cushion;
+    private int usable;
 
-    public Chair(char legs, char arms, char seat, char cushion, boolean usable) {
+    public Chair(String ID, int PRICE, String MANUID, String TYPE, int legs, int arms, int seat, int cushion, int usable) {
+        super(ID, PRICE, MANUID, TYPE);
         this.legs = legs;
         this.arms = arms;
         this.seat = seat;
@@ -60,173 +47,176 @@ class Chair extends Furniture{
         this.usable= usable;
     }
 
-    public char getLegs() {
+    public int getLegs() {
         return legs;
     }
 
-    public char getArms() {
+    public int getArms() {
         return arms;
     }
 
-    public char getSeat() {
+    public int getSeat() {
         return seat;
     }
 
-    public char getCushion() {
+    public int getCushion() {
         return cushion;
     }
 
-    public boolean isUsable() {
+    public int isUsable() {
         return usable;
     }
 
-    public void setLegs(char legs) {
+    public void setLegs(int legs) {
         this.legs = legs;
     }
 
-    public void setArms(char arms) {
+    public void setArms(int arms) {
         this.arms = arms;
     }
 
-    public void setSeat(char seat) {
+    public void setSeat(int seat) {
         this.seat = seat;
     }
 
-    public void setCushion(char cushion) {
+    public void setCushion(int cushion) {
         this.cushion = cushion;
     }
 
-    public void setUsable(boolean usable) {
+    public void setUsable(int usable) {
         this.usable = usable;
     }
 
 }
 
 class Desk extends Furniture{
-    private char legs;
-    private char top;
-    private char drawer;
-    private boolean usable;
+    private int legs;
+    private int top;
+    private int drawer;
+    private int usable;
 
-    public Desk(char legs, char top, char drawer, boolean usable) {
+    public Desk(String ID, int PRICE, String MANUID, String TYPE, int legs, int top, int drawer, int usable) {
+        super(ID, PRICE, MANUID, TYPE);
         this.legs = legs;
         this.top = top;
         this.drawer = drawer;
         this.usable= usable;
     }
 
-    public char getLegs() {
+    public int getLegs() {
         return legs;
     }
 
-    public char getTop() {
+    public int getTop() {
         return top;
     }
 
-    public char getDrawer() {
+    public int getDrawer() {
         return drawer;
     }
 
-    public boolean isUsable() {
+    public int isUsable() {
         return usable;
     }
 
-    public void setLegs(char legs) {
+    public void setLegs(int legs) {
         this.legs = legs;
     }
 
-    public void setTop(char top) {
+    public void setTop(int top) {
         this.top = top;
     }
 
-    public void setDrawer(char drawer) {
+    public void setDrawer(int drawer) {
         this.drawer = drawer;
     }
 
-    public void setUsable(boolean usable) {
+    public void setUsable(int usable) {
         this.usable = usable;
     }
 
 }
 
 class Lamp extends Furniture{
-    private char base;
-    private char bulb;
-    private boolean usable;
+    private int base;
+    private int bulb;
+    private int usable;
 
-    public Lamp(char base, char bulb, boolean usable) {
+    public Lamp(String ID, int PRICE, String MANUID, String TYPE, int base, int bulb, int usable) {
+        super(ID, PRICE, MANUID, TYPE);
         this.base = base;
         this.bulb = bulb;
         this.usable= usable;
     }
 
-    public char getBase() {
+    public int getBase() {
         return base;
     }
 
-    public char getBulb() {
+    public int getBulb() {
         return bulb;
     }
 
-    public boolean isUsable() {
+    public int isUsable() {
         return usable;
     }
 
-    public void setBase(char base) {
+    public void setBase(int base) {
         this.base = base;
     }
 
-    public void setBulb(char bulb) {
+    public void setBulb(int bulb) {
         this.bulb = bulb;
     }
 
-    public void setUsable(boolean usable) {
+    public void setUsable(int usable) {
         this.usable = usable;
     }
 }
 
 class Filing extends Furniture{
-    private char rails;
-    private char drawers;
-    private char cabinet;
-    private boolean usable;
+    private int rails;
+    private int drawers;
+    private int cabinet;
+    private int usable;
 
-    public Filing(char rails, char drawers, char cabinet, boolean usable) {
+    public Filing(String ID, int PRICE, String MANUID, String TYPE, int rails, int drawers, int cabinet, int usable) {
+        super(ID, PRICE, MANUID, TYPE);
         this.rails = rails;
         this.drawers = drawers;
         this.cabinet = cabinet;
         this.usable= usable;
     }
 
-    public char getRails() {
+    public int getRails() {
         return rails;
     }
 
-    public char getDrawers() {
+    public int getDrawers() {
         return drawers;
     }
 
-    public char getCabinet() {
+    public int getCabinet() {
         return cabinet;
     }
 
-    public boolean isUsable() {
-        return USABLE;
+    public int isUsable() {
+        return usable;
     }
 
-    public void setRails(char rails) {
+    public void setRails(int rails) {
         this.rails = rails;
     }
 
-    public void setDrawers(char drawers) {
+    public void setDrawers(int drawers) {
         this.drawers = drawers;
     }
 
-    public void setCabinet(char cabinet) {
+    public void setCabinet(int cabinet) {
         this.cabinet = cabinet;
     }
 
-    public void setUsable(boolean usable) {
+    public void setUsable(int usable) {
         this.usable = usable;
     }
 
