@@ -36,15 +36,13 @@ class Chair extends Furniture{
     private int arms;
     private int seat;
     private int cushion;
-    private int usable;
 
-    public Chair(String ID, int PRICE, String MANUID, String TYPE, int legs, int arms, int seat, int cushion, int usable) {
+    public Chair(String ID, int PRICE, String MANUID, String TYPE, int legs, int arms, int seat, int cushion) {
         super(ID, PRICE, MANUID, TYPE);
         this.legs = legs;
         this.arms = arms;
         this.seat = seat;
         this.cushion = cushion;
-        this.usable= usable;
     }
 
     public int getLegs() {
@@ -63,10 +61,6 @@ class Chair extends Furniture{
         return cushion;
     }
 
-    public int isUsable() {
-        return usable;
-    }
-
     public void setLegs(int legs) {
         this.legs = legs;
     }
@@ -83,24 +77,18 @@ class Chair extends Furniture{
         this.cushion = cushion;
     }
 
-    public void setUsable(int usable) {
-        this.usable = usable;
-    }
-
 }
 
 class Desk extends Furniture{
     private int legs;
     private int top;
     private int drawer;
-    private int usable;
 
-    public Desk(String ID, int PRICE, String MANUID, String TYPE, int legs, int top, int drawer, int usable) {
+    public Desk(String ID, int PRICE, String MANUID, String TYPE, int legs, int top, int drawer) {
         super(ID, PRICE, MANUID, TYPE);
         this.legs = legs;
         this.top = top;
         this.drawer = drawer;
-        this.usable= usable;
     }
 
     public int getLegs() {
@@ -115,10 +103,6 @@ class Desk extends Furniture{
         return drawer;
     }
 
-    public int isUsable() {
-        return usable;
-    }
-
     public void setLegs(int legs) {
         this.legs = legs;
     }
@@ -131,22 +115,16 @@ class Desk extends Furniture{
         this.drawer = drawer;
     }
 
-    public void setUsable(int usable) {
-        this.usable = usable;
-    }
-
 }
 
 class Lamp extends Furniture{
     private int base;
     private int bulb;
-    private int usable;
 
-    public Lamp(String ID, int PRICE, String MANUID, String TYPE, int base, int bulb, int usable) {
+    public Lamp(String ID, int PRICE, String MANUID, String TYPE, int base, int bulb) {
         super(ID, PRICE, MANUID, TYPE);
         this.base = base;
         this.bulb = bulb;
-        this.usable= usable;
     }
 
     public int getBase() {
@@ -157,10 +135,6 @@ class Lamp extends Furniture{
         return bulb;
     }
 
-    public int isUsable() {
-        return usable;
-    }
-
     public void setBase(int base) {
         this.base = base;
     }
@@ -168,24 +142,18 @@ class Lamp extends Furniture{
     public void setBulb(int bulb) {
         this.bulb = bulb;
     }
-
-    public void setUsable(int usable) {
-        this.usable = usable;
-    }
 }
 
 class Filing extends Furniture{
     private int rails;
     private int drawers;
     private int cabinet;
-    private int usable;
 
-    public Filing(String ID, int PRICE, String MANUID, String TYPE, int rails, int drawers, int cabinet, int usable) {
+    public Filing(String ID, int PRICE, String MANUID, String TYPE, int rails, int drawers, int cabinet) {
         super(ID, PRICE, MANUID, TYPE);
         this.rails = rails;
         this.drawers = drawers;
         this.cabinet = cabinet;
-        this.usable= usable;
     }
 
     public int getRails() {
@@ -200,10 +168,6 @@ class Filing extends Furniture{
         return cabinet;
     }
 
-    public int isUsable() {
-        return usable;
-    }
-
     public void setRails(int rails) {
         this.rails = rails;
     }
@@ -214,10 +178,6 @@ class Filing extends Furniture{
 
     public void setCabinet(int cabinet) {
         this.cabinet = cabinet;
-    }
-
-    public void setUsable(int usable) {
-        this.usable = usable;
     }
 
 }
