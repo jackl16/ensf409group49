@@ -9,6 +9,8 @@ UPDATE: .gitignore file has been updated to exclude all .class and .jar files fr
 2. Fork this repository to work on.
 3. Create your own branch to work on even on your forked repository to make it easier to keep track of the pull requests
 4. Leave meaningful pull request comments.
+
+
 5. Steps to update your fork:
    - git remote add upstream https://github.com/ItsMarcoMSF/ensf409group49 (only have to do one time)
    - git checkout main
@@ -26,3 +28,4 @@ UPDATE: .gitignore file has been updated to exclude all .class and .jar files fr
    - git commit -m "add your message here (make it meaningful)"
    - git push
    - After this go on to github and navigate to your branches and submit a pull request to ItsMarcoMSF/main.
+
