@@ -1,5 +1,9 @@
 package edu.ucalgary.ensf409;
 
+import java.sql.*;
+import java.util.Scanner;
+import java.util.*;
+
 public static void main (String[] args) {
 	 Scanner scannerObj = new Scanner(System.in);
         System.out.println("Enter your username.");
