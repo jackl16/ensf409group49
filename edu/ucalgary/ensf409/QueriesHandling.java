@@ -401,10 +401,207 @@ public class QueriesHandling {
 
     }*/
 
-    public void callCombinations(String category, String type, int quantity){
-        
+    public String callCombinations(String category, String type, int quantity){
+        if (category.equals("Lamp")){
+			Combinations combinationSet = new Combinations();
+			combinationSet.findAllCombinationsLamp(allCompatibleLamp(type), quantity);
+			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
+			
+			if (result == null) {
+				// TODO: add handling for no combinations found case
+			} else {
+				 
+			}
+		} 
+        else if(category.equals("Chair")){
+            Combinations combinationSet = new Combinations();
+			combinationSet.findAllCombinationsChair(allCompatibleChair(type), quantity);
+			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
+			
+			if (result == null) {
+				// TODO: add handling for no combinations found case
+			} else {
+				 
+			}
+        }
+        else if(category.equals("Desk")){
+            Combinations combinationSet = new Combinations();
+			combinationSet.findAllCombinationsDesk(allCompatibleDesk(type), quantity);
+			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
+			
+			if (result == null) {
+				// TODO: add handling for no combinations found case
+			} else {
+				 
+			}
+        }
+        else if(category.equals("Filing")){
+            Combinations combinationSet = new Combinations();
+			combinationSet.findAllCombinationsFiling(allCompatibleFiling(type), quantity);
+			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
+			
+			if (result == null) {
+				// TODO: add handling for no combinations found case
+			} else {
+				 
+			}
+        }
+
+        // TODO: else if for other cases
     }
 
+    private ArrayList<Lamp> allCompatibleLamp(String type)
+    {
+        ArrayList<Lamp> lampArr = new ArrayList<>();
+		try {
+			Statement stmt = dbConnect.createStatement();
+            this.results = stmt.executeQuery("SELECT * FROM Lamp WHERE Type = " + type);
+			
+			while(results.next()) {
+				int base, bulb;
+				if((results.getString("base")).equals("Y")) {
+					base = 1;
+				} else {
+					base = 0;
+				}
+				if((results.getString("bulb")).equals("Y")) {
+					bulb = 1;
+				} else {
+					bulb = 0;
+				}
+				
+				Lamp a = new Lamp (results.getString("ID"), results.getInt("Price"), results.getString("ManuID"),
+										results.getString("Type"), base, bulb);
+				lampArr.add(a);						
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+    }
+
+    private ArrayList<Desk> allCompatibleDesk (String type) {
+		ArrayList<Desk> DeskArr = new ArrayList<>();
+		try {
+			Statement stmt = dbConnect.createStatement();
+            this.results = stmt.executeQuery("SELECT * FROM Desk WHERE Type = " + type);
+			
+			while(results.next()) {
+				int legs, top, drawer;
+				if((results.getString("legs")).equals("Y")) {
+					legs = 1;
+				} else {
+					legs = 0;
+				}
+				if((results.getString("top")).equals("Y")) {
+					top = 1;
+				} else {
+					top = 0;
+				}
+                if((results.getString("top")).equals("Y")) {
+					drawer = 1;
+				} else {
+					drawer = 0;
+				}
+                
+				
+				Desk a = new Desk (results.getString("ID"), results.getInt("Price"), results.getString("ManuID"),
+										results.getString("Type"), legs, top, drawer);
+				DeskArr.add(a);						
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+    private ArrayList<Chair> allCompatibleChair (String type) {
+		ArrayList<Chair> ChairArr = new ArrayList<>();
+		try {
+			Statement stmt = dbConnect.createStatement();
+            this.results = stmt.executeQuery("SELECT * FROM Chair WHERE Type = " + type);
+			
+			while(results.next()) {
+				int legs, arms, seat, cushion;
+				if((results.getString("legs")).equals("Y")) {
+					legs = 1;
+				} else {
+					legs = 0;
+				}
+				if((results.getString("arms")).equals("Y")) {
+					arms = 1;
+				} else {
+				    arms = 0;
+				}
+                if((results.getString("seat")).equals("Y")) {
+					seat = 1;
+				} else {
+					seat = 0;
+				}
+                if((results.getString("cushion")).equals("Y")) {
+					cushion = 1;
+				} else {
+					cushion = 0;
+				}
+                
+				
+				Chair a = new Chair(results.getString("ID"), results.getInt("Price"), results.getString("ManuID"),
+										results.getString("Type"), legs, arms, seat, cushion);
+				ChairArr.add(a);						
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private ArrayList<Filing> allCompatibleFiling(String type) {
+		ArrayList<Filing> FilingArr = new ArrayList<>();
+		try {
+			Statement stmt = dbConnect.createStatement();
+            this.results = stmt.executeQuery("SELECT * FROM Filing WHERE Type = " + type);
+			
+			while(results.next()) {
+				int rails, drawers, cabinet;
+				if((results.getString("rails")).equals("Y")) {
+					rails = 1;
+				} else {
+					rails = 0;
+				}
+				if((results.getString("drawers")).equals("Y")) {
+					drawers = 1;
+				} else {
+				    drawers = 0;
+				}
+                if((results.getString("cabinet")).equals("Y")) {
+					cabinet = 1;
+				} else {
+					cabinet = 0;
+				}
+                
+                
+				
+				Filing a = new Filing(results.getString("ID"), results.getInt("Price"), results.getString("ManuID"),
+										results.getString("Type"), rails, drawers, cabinet);
+				FilingArr.add(a);						
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private ArrayList<String> validManufacturers(String fur, String type) {
+        ArrayList<String> manuArrayList = new ArrayList<>();
+        try {
+            Statement stmt = dbConnect.createStatement();
+            this.results = stmt.executeQuery("SELECT * FROM " + fur +" WHERE Type = " + type);
+
+            while(results.next()){
+                String a = results.getString("ManuID");
+                manuArrayList.add(a);
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return manuArrayList;
+    }
 
     /*public ArrayList<String> getStrArr(String furniture){
         ArrayList<String> testStr= new ArrayList<String>();
