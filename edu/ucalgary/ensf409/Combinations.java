@@ -1,5 +1,4 @@
 package edu.ucalgary.ensf409;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Vector;
@@ -104,7 +103,7 @@ public class Combinations {
         uniqueCombinationDesk(0, 0, 0, 0, quantity, local, A);
     }
 
-    public void uniqueCombinationDesk(int l, int sum1, int sum2, int sum3, int quantity, Vector<Chair> local, Vector<Chair> A) {
+    public void uniqueCombinationDesk(int l, int sum1, int sum2, int sum3, int quantity, Vector<Desk> local, Vector<Desk> a) {
         if (sum1 >= quantity && sum2 >= quantity && sum3 >= quantity) {
             ArrayList<Furniture> comb = new ArrayList<>();
             for (Desk desk : local) {
@@ -115,18 +114,18 @@ public class Combinations {
         }
 
         // add another Desk from A to local to check.
-        for (int i = l; i < A.size(); i++){
+        for (int i = l; i < a.size(); i++){
             // check if the current Desk is repeated or not
-            if (i > l && A.get(i) == A.get(i-1)){
+            if (i > l && a.get(i) == a.get(i-1)){
                 continue; // skip this increment
             }
 
             // adding the next Desk into local
-            local.add(A.get(i));
+            local.add(a.get(i));
 
             // recursive call
-            uniqueCombinationDesk(i+1, sum1 + A.get(i).getLegs(), sum2 + A.get(i).getTop(),
-                    sum3 + A.get(i).getDrawer(), quantity, local, A);
+            uniqueCombinationDesk(i+1, sum1 + a.get(i).getLegs(), sum2 + a.get(i).getTop(),
+                    sum3 + a.get(i).getDrawer(), quantity, local, a);
 
             // Remove element from the combination
             local.remove(local.size() - 1);
@@ -137,10 +136,10 @@ public class Combinations {
         Vector<Filing> A = new Vector<>(arr);
         Vector<Filing> local = new Vector<>();
 
-        uniqueCombinationDesk(0, 0, 0, 0, quantity, local, A);
+        uniqueCombinationFiling(0, 0, 0, 0, quantity, local, A);
     }
 
-    public void uniqueCombinationFiling(int l, int sum1, int sum2, int sum3, int quantity, Vector<Chair> local, Vector<Chair> A) {
+    public void uniqueCombinationFiling(int l, int sum1, int sum2, int sum3, int quantity, Vector<Filing> local, Vector<Filing> a) {
         if (sum1 >= quantity && sum2 >= quantity && sum3 >= quantity) {
             ArrayList<Furniture> comb = new ArrayList<>();
             for (Filing filing : local) {
@@ -151,18 +150,18 @@ public class Combinations {
         }
 
         // add another Desk from A to local to check.
-        for (int i = l; i < A.size(); i++){
+        for (int i = l; i < a.size(); i++){
             // check if the current Desk is repeated or not
-            if (i > l && A.get(i) == A.get(i-1)){
+            if (i > l && a.get(i) == a.get(i-1)){
                 continue; // skip this increment
             }
 
             // adding the next Desk into local
-            local.add(A.get(i));
+            local.add(a.get(i));
 
             // recursive call
-            uniqueCombinationFiling(i+1, sum1 + A.get(i).getRails(), sum2 + A.get(i).getDrawers(),
-                    sum3 + A.get(i).getCabinet(), quantity, local, A);
+            uniqueCombinationFiling(i+1, sum1 + a.get(i).getRails(), sum2 + a.get(i).getDrawers(),
+                    sum3 + a.get(i).getCabinet(), quantity, local, a);
 
             // Remove element from the combination
             local.remove(local.size() - 1);
@@ -175,6 +174,9 @@ public class Combinations {
     public ArrayList<Combination> getResult() {
         return result;
     }
+
+
+    
 }
 
 class Combination {
@@ -196,3 +198,5 @@ class Combination {
         System.out.println("Total Price: $" + totalPrice);
     }
 }
+
+
