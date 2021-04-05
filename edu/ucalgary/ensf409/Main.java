@@ -123,10 +123,10 @@ public class Main{
    
                System.out.println('\n');
                System.out.println("What quantity of " +specificType+" "+specificCat+" would you like:");
-               String quantity = scannerObj.nextLine();
+               int quantity = Integer.parseInt(scannerObj.nextLine());
                System.out.println("Requesting: " + quantity+ " "+ specificType+" "+specificCat+"s.....");
    
-               System.out.println(myJDBC.callCombinations(specificCat,specificType, quantity));
+               myJDBC.callCombinations(specificCat,specificType, quantity);
    
                System.out.println('\n');
                System.out.println("Would you like to make another request? (yes/no)");
