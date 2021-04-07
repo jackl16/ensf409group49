@@ -5,7 +5,7 @@ import java.util.Scanner;
 import java.util.*;
 public class Main{
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner scannerObj = new Scanner(System.in);
         System.out.println("Enter your username.");
 
@@ -108,7 +108,7 @@ public class Main{
             int quantity = Integer.parseInt(scannerObj.nextLine());
             System.out.println("Requesting: " + quantity+ " "+ specificType+" "+specificCat+"s.....");
 
-          //  myJDBC.callCombinations(specificCat,specificType, quantity);
+            myJDBC.callCombinations(specificCat,specificType, quantity);
 
             System.out.println('\n');
             System.out.println("Would you like to make another request? (yes/no)");
