@@ -27,7 +27,7 @@ public class QueriesHandling {
 
         String passWord = scannerObj.nextLine();
 
-        QueriesHandling myJDBC = new QueriesHandling("jdbc:mysql://localhost/competition",userName,passWord);
+        QueriesHandling myJDBC = new QueriesHandling("jdbc:mysql://localhost/inventory",userName,passWord);
         myJDBC.initializeConnection(userName,passWord);
 
         System.out.println('\n');
