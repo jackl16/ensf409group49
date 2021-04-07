@@ -2,6 +2,7 @@ package edu.ucalgary.ensf409;
 
 import java.sql.*;
 import java.util.*;
+import java.io.*;
 
 
 
@@ -235,6 +236,7 @@ public class QueriesHandling {
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
+				createOrderForm(category, type, quantity, result);
 			}
 		} 
         else if(category.equals("Chair")){
@@ -248,6 +250,7 @@ public class QueriesHandling {
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
+				createOrderForm(category, type, quantity, result);
 			}
         }
         else if(category.equals("Desk")){
@@ -261,6 +264,7 @@ public class QueriesHandling {
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
+				createOrderForm(category, type, quantity, result);
 			}
         }
         else if(category.equals("Filing")){
@@ -274,6 +278,7 @@ public class QueriesHandling {
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
+				createOrderForm(category, type, quantity, result);
 			}
         }
 
@@ -460,6 +465,42 @@ public class QueriesHandling {
 	
 	private String noCombinationsFound (String manu) {
 		return "Order cannot be fulfilled based on current inventory. Suggested manufacturers are " + manu + ".";
+	}
+	
+	private void createOrderForm(String category, String type, int quantity, Combination result){
+		StringBuffer format = new StringBuffer();
+		format.append("Furniture Order Form");
+		format.append('\n');
+		format.append('\n');
+		format.append("Faculty Name: ");
+		format.append('\n');
+		format.append("Contact: ");
+		format.append('\n');
+		format.append("Date: ");
+		format.append('\n');
+		
+		format.append("Original Request: " + type + " " + category + ", " + quantity);
+		format.append('\n');
+		format.append('\n');
+		format.append("Items Ordered: ");
+		format.append('\n');
+		format.append(result.getFormat());
+		
+		File myOut = new File("order-form.txt");
+		// clear current content of input file
+		try {
+            RandomAccessFile raf = new RandomAccessFile(myOut, "rw");
+            raf.setLength(0);
+        } catch (IOException ex) {
+            System.out.printf("Error: %s\n", ex);
+        }
+		
+		// write to file
+		try (PrintWriter output = new PrintWriter(new BufferedWriter(new FileWriter(myOut, true)))) {
+            output.print(format.toString());
+        } catch (IOException ex) {
+            System.out.printf("Error: %s\n", ex);
+        }
 	}
 
 

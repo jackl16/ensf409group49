@@ -1,7 +1,5 @@
 package edu.ucalgary.ensf409;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Vector;
+import java.util.*;
 
 public class Combinations {
     public ArrayList<Combination> result;
@@ -197,6 +195,18 @@ class Combination {
         }
         System.out.println("Total Price: $" + totalPrice);
     }
+	
+	public String getFormat() {
+		StringBuffer format = new StringBuffer();
+		for (Furniture furniture : combination) {
+            format.append("ID: " + furniture.getID());
+			format.append('\n');
+        }
+		format.append("Total Price: " + totalPrice);
+		
+		return format.toString();
+	}
+	
 }
 
 
