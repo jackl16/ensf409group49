@@ -10,11 +10,9 @@ public class QueriesHandling {
     public final String DBURL;
     public final String USERNAME; 
     public final String PASSWORD; 
-    
+
     private ResultSet results;
     private Connection dbConnect;
-
-
 
 
 /**
@@ -224,6 +222,8 @@ public class QueriesHandling {
     }
 
 
+
+
     public void callCombinations(String category, String type, int quantity){
         if (category.equals("Lamp")){
 			Combinations combinationSet = new Combinations();
@@ -237,6 +237,11 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
+
 			}
 		} 
         else if(category.equals("Chair")){
@@ -251,6 +256,10 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
 			}
         }
         else if(category.equals("Desk")){
@@ -265,6 +274,10 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
 			}
         }
         else if(category.equals("Filing")){
@@ -279,6 +292,11 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
+
 			}
         }
 
@@ -504,6 +522,26 @@ public class QueriesHandling {
 	}
 
 
+    public void removeFurniture(String category, String id){
+        try {
+            String query = "DELETE FROM "+category+" WHERE ID = ?";
+            PreparedStatement myStmt = myConnect.prepareStatement(query);
+
+            myStmt.setString(1, id);
+                        
+            int rowCount = myStmt.executeUpdate();
+            System.out.println("Rows affected: " + rowCount);
+            
+            myStmt.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+    }
+
+
+
 
 
     public void close(){
@@ -517,4 +555,3 @@ public class QueriesHandling {
 
 
 }
-
