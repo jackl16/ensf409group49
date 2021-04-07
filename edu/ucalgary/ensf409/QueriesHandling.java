@@ -1,7 +1,6 @@
 package edu.ucalgary.ensf409;
 
 import java.sql.*;
-import java.util.Scanner;
 import java.util.*;
 import java.io.*;
 
@@ -11,147 +10,10 @@ public class QueriesHandling {
     public final String DBURL;
     public final String USERNAME; 
     public final String PASSWORD; 
-    ///private ArrayList<Combination> aCombination;
 
     private ResultSet results;
     private Connection dbConnect;
 
-    /*public static void main(String[] args) {
-
-        Scanner scannerObj = new Scanner(System.in);
-        System.out.println("Enter your username.");
-
-        String userName = scannerObj.nextLine();
-
-        System.out.println('\n');
-        System.out.println("Enter your password.");
-
-        String passWord = scannerObj.nextLine();
-
-        QueriesHandling myJDBC = new QueriesHandling("jdbc:mysql://localhost/inventory",userName,passWord);
-        myJDBC.initializeConnection(userName,passWord);
-
-        System.out.println('\n');
-        System.out.println("Choose a furniture to view a selection of Chair, Desk, Lamp, or Filing.");
-
-        String selectedFurniture = scannerObj.nextLine();
-        System.out.println("You have selected : " + selectedFurniture);
-        
-        System.out.println(myJDBC.selectFurniture(selectedFurniture));
-
-        System.out.println('\n');
-        System.out.println("Would you like to continue browsing? (yes/no)");
-        String contSelectionMenu = scannerObj.nextLine();
-
-        while(contSelectionMenu.equals("yes")){
-            System.out.println('\n');
-            System.out.println("Choose a furniture to view a selection of Chair, Desk, Lamp, or Filing.");
-
-            selectedFurniture = scannerObj.nextLine();
-            System.out.println("You have selected : " + selectedFurniture);
-        
-            System.out.println(myJDBC.selectFurniture(selectedFurniture));
-
-            System.out.println('\n');
-            System.out.println("Would you like to continue browsing? (yes/no)");
-            contSelectionMenu = scannerObj.nextLine();
-
-        }
-
-
-        String contSelectionMenu2 = "yes";
-
-        do{
-            System.out.println('\n');
-            System.out.println("Pick a specific furniture category: (i.e. Chair, Desk, Lamp, or Filing) ");
-            String specificCat = scannerObj.nextLine();
-            System.out.println("You have selected : " + specificCat);
-
-            System.out.println('\n');
-            System.out.println("What would you like to search for: (i.e. ID, Type, Legs, Bulb, etc.) ");
-            String specificVar = scannerObj.nextLine();
-            System.out.println("You have selected : " + specificVar);
-
-            System.out.println('\n');
-            System.out.println("Enter the specific " +specificVar+" you are looking for:");
-            String inputSearch = scannerObj.nextLine();
-            System.out.println("You are searching for: " + inputSearch);
-
-            System.out.println(myJDBC.specificSelection(specificCat,specificVar, inputSearch));
-
-            System.out.println('\n');
-            System.out.println("Would you like to continue searching? (yes/no)");
-            contSelectionMenu2 = scannerObj.nextLine();
-        }while(contSelectionMenu2.equals("yes"));
-     
-        String contSelectionMenu3 = "yes";
-
-        /*
-        System.out.println('\n');
-        System.out.println("You are now looking for an individual characteristic.");
-
-        do{
-            System.out.println('\n');
-            System.out.println("Pick a specific furniture category: (i.e. Chair, Desk, Lamp, or Filing) ");
-            String specificCat = scannerObj.nextLine();
-            System.out.println("You have selected : " + specificCat);
-
-            System.out.println('\n');
-            System.out.println("What would you like to search for: (i.e. ID, Type, Legs, Bulb, etc.) ");
-            String specificVar = scannerObj.nextLine();
-            System.out.println("You have selected : " + specificVar);
-
-            System.out.println('\n');
-            System.out.println("Enter the specific " +specificVar+" you are looking for:");
-            String inputSearch = scannerObj.nextLine();
-            System.out.println("You are searching for: " + inputSearch);
-
-            System.out.println('\n');
-            System.out.println("What value would you like (i.e. ID, ManuID, Type) :");
-            String searchInput = scannerObj.nextLine();
-            System.out.println("You are searching for: " + searchInput);
-
-            System.out.println(myJDBC.testingStrArr(specificCat,specificVar, inputSearch, searchInput));
-
-            System.out.println('\n');
-            System.out.println("Would you like to continue searching? (yes/no)");
-            contSelectionMenu3 = scannerObj.nextLine();
-        }while(contSelectionMenu3.equals("yes"));
-
-        *
-
-        System.out.println('\n');
-        System.out.println("You may now make a request form.");
-
-        do{
-            System.out.println('\n');
-            System.out.println("What category of furniture would you like?: (i.e. Chair, Desk, Lamp, or Filing) ");
-            String specificCat = scannerObj.nextLine();
-            System.out.println("You have selected the category: " + specificCat);
-
-            System.out.println('\n');
-            System.out.println("What type of "+specificCat+" would you like?");
-            String specificType = scannerObj.nextLine();
-
-            System.out.println('\n');
-            System.out.println("What quantity of " +specificType+" "+specificCat+" would you like:");
-            int quantity = scannerObj.nextLine();
-            System.out.println("Requesting: " + inputSearch+ " "+ specificType+" "+specificCat+"s.....");
-
-            System.out.println(myJDBC.callCombinations(specificCat,specificType, quantity));
-
-            System.out.println('\n');
-            System.out.println("Would you like to make another request? (yes/no)");
-            contSelectionMenu3 = scannerObj.nextLine();
-        }while(contSelectionMenu3.equals("yes"));
-
-
-
-
-
-   
-        
-    }*/
 
 /**
  * 
@@ -359,48 +221,8 @@ public class QueriesHandling {
 
     }
 
-/**
- * 
- * @param furniture
- * @param specificVar
- * @param inputSearch
- * @param searchInput
- * @return
- */
-
-    public ArrayList<String> testingStrArr(String furniture,String specificVar,String inputSearch, String searchInput){
-        ArrayList<String> testStr= new ArrayList<String>();
-
-        try{
-            Statement myStmt = dbConnect.createStatement();
-            results= myStmt.executeQuery("SELECT * FROM "+furniture+" WHERE "+specificVar+" ='"+ inputSearch+"'");
-
-            while(results.next()){
-                testStr.add(results.getString(searchInput));
-            }
 
 
-            myStmt.close();
-    
-        }catch (SQLException ex){
-            ex.printStackTrace();
-        }
-
-        return testStr;
-
-    }
-
-
-
-
-
-    /*public ArrayList<Combination> allCompatible(ArrayList<Furniture> furniture){
-
-    }*/
-
-    /*public ArrayList<String> validManufacturers(String fur, String type){
-
-    }*/
 
     public void callCombinations(String category, String type, int quantity){
         if (category.equals("Lamp")){
@@ -415,6 +237,11 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
+
 			}
 		} 
         else if(category.equals("Chair")){
@@ -429,6 +256,10 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
 			}
         }
         else if(category.equals("Desk")){
@@ -443,6 +274,10 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
 			}
         }
         else if(category.equals("Filing")){
@@ -457,6 +292,11 @@ public class QueriesHandling {
 				System.out.println("Items Ordered: ");
 				result.print();
 				createOrderForm(category, type, quantity, result);
+                for (Furniture furniture : result.combination){
+                    String id=furniture.getID();
+                    removeFurniture(category,id);
+                }
+
 			}
         }
 
@@ -681,27 +521,24 @@ public class QueriesHandling {
         }
 	}
 
-    /*public ArrayList<String> getStrArr(String furniture){
-        ArrayList<String> testStr= new ArrayList<String>();
 
-        try{
-            Statement myStmt = dbConnect.createStatement();
-            results= myStmt.executeQuery("SELECT * FROM "+furniture+" WHERE "+specificVar+" ='"+ inputSearch+"'");
+    public void removeFurniture(String category, String id){
+        try {
+            String query = "DELETE FROM "+category+" WHERE ID = ?";
+            PreparedStatement myStmt = myConnect.prepareStatement(query);
 
-            while(results.next()){
-                testStr.add(results.getString(searchInput));
-            }
-
-
+            myStmt.setString(1, id);
+                        
+            int rowCount = myStmt.executeUpdate();
+            System.out.println("Rows affected: " + rowCount);
+            
             myStmt.close();
-    
-        }catch (SQLException ex){
+
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return testStr;
-
-    }*/
+    }
 
 
 
