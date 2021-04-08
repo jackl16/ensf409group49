@@ -34,7 +34,7 @@ public class Main{
              System.out.println('\n');
              System.out.println("Choose a furniture to view a selection of Chair, Desk, Lamp, or Filing.");
  
-             selectedFurniture = scannerObj.nextLine();
+             String selectedFurniture = scannerObj.nextLine();
              System.out.println("You have selected : " + selectedFurniture);
          
              System.out.println(myJDBC.selectFurniture(selectedFurniture));
