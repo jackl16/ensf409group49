@@ -525,7 +525,7 @@ public class QueriesHandling {
     public void removeFurniture(String category, String id){
         try {
             String query = "DELETE FROM "+category+" WHERE ID = ?";
-            PreparedStatement myStmt = myConnect.prepareStatement(query);
+            PreparedStatement myStmt = dbConnect.prepareStatement(query);
 
             myStmt.setString(1, id);
                         
