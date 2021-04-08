@@ -27,19 +27,10 @@ public class Main{
         String browseOrOrder = scannerObj.nextLine();
         
         if (browseOrOrder.equalsIgnoreCase("browse")){
-         System.out.println('\n');
-         System.out.println("Choose a furniture to view a selection of Chair, Desk, Lamp, or Filing.");
+
+         String contSelectionMenu = "yes";
  
-         String selectedFurniture = scannerObj.nextLine();
-         System.out.println("You have selected : " + selectedFurniture);
-         
-         System.out.println(myJDBC.selectFurniture(selectedFurniture));
- 
-         System.out.println('\n');
-         System.out.println("Would you like to continue browsing? (yes/no)");
-         String contSelectionMenu = scannerObj.nextLine();
- 
-         while(contSelectionMenu.equals("yes")){
+        do{
              System.out.println('\n');
              System.out.println("Choose a furniture to view a selection of Chair, Desk, Lamp, or Filing.");
  
@@ -52,12 +43,17 @@ public class Main{
              System.out.println("Would you like to continue browsing? (yes/no)");
              contSelectionMenu = scannerObj.nextLine();
  
-         }
+         }while(contSelectionMenu.equals("yes"));
  
  
-         String contSelectionMenu2 = "yes";
+         
+
+         System.out.println('\n');
+            System.out.println("Would you to search for a list of specific furniture(s)? i.e. Mesh chairs or a furniture with specific ID (yes/no)");
+            String contSelectionMenu2 = scannerObj.nextLine();
+
  
-         do{
+            while(contSelectionMenu2.equals("yes")){
              System.out.println('\n');
              System.out.println("Pick a specific furniture category: (i.e. Chair, Desk, Lamp, or Filing) ");
              String specificCat = scannerObj.nextLine();
@@ -78,20 +74,20 @@ public class Main{
              System.out.println('\n');
              System.out.println("Would you like to continue searching? (yes/no)");
              contSelectionMenu2 = scannerObj.nextLine();
-         }while(contSelectionMenu2.equals("yes"));
+         }
       
  
 
         }
 
-        String contSelectionMenu3 = "yes";
 
       
         if (browseOrOrder.equalsIgnoreCase("order")){
-
         
         System.out.println('\n');
         System.out.println("You may now make a request form.");
+
+        String contSelectionMenu3 = "yes";
 
         do{
             System.out.println('\n');
