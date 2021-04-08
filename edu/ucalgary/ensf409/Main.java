@@ -327,8 +327,13 @@ public class Main{
  
                     try {
                       int x = Integer.parseInt(quantity1); 
-                      System.out.println("Valid input");
-                      bool9=true;
+        
+                      if (x>0){
+                        bool9=true;
+                        }
+                        else if (x<=0){
+                            System.out.println("Invalid input, cannot request negative numbers or 0. Please try again."); 
+                        }
                     }catch(NumberFormatException e) {
                       System.out.println("Invalid input. Please try again."); 
                     } 
@@ -340,8 +345,13 @@ public class Main{
      
                     try {
                         int x = Integer.parseInt(quantity1); 
-                        System.out.println("Valid input");
-                        bool9=true;
+                  
+                        if (x>0){
+                            bool9=true;
+                            }
+                            else if (x<=0){
+                                System.out.println("Invalid input, cannot request negative numbers or 0. Please try again."); 
+                            }
                       }catch(NumberFormatException e) {
                         System.out.println("Invalid input. Please try again."); 
                       } 
