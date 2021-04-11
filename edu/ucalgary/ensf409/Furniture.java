@@ -8,10 +8,10 @@ package edu.ucalgary.ensf409;
  */
 
 public class Furniture {
-    final String ID;    //final String data member which holds the furniture's ID number.
-    final int PRICE;    //final int data member which holds the price of the furniture.
-    final String MANUID;    //final String data member which holds the manufacturer's ID number.
-    final String TYPE;    //final String data member which holds the type of the furniture.
+    private final String ID;    //final String data member which holds the furniture's ID number.
+    private final int PRICE;    //final int data member which holds the price of the furniture.
+    private final String MANUID;    //final String data member which holds the manufacturer's ID number.
+    private final String TYPE;    //final String data member which holds the type of the furniture.
     
     /**
      *  This constructor, initiliazes all the data members of this class.
