@@ -231,8 +231,8 @@ public class QueriesHandling {
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
 			
 			if (result == null) {
-				// TODO: add handling for no combinations found case
-				System.out.println(noCombinationsFound(validManufacturers(category, type)));
+                System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
+                        "Office Furnishings, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -250,8 +250,8 @@ public class QueriesHandling {
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
 			
 			if (result == null) {
-				// TODO: add handling for no combinations found case
-				System.out.println(noCombinationsFound(validManufacturers(category, type)));
+				System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
+                        "Office Furnishings, Chairs R Us, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -268,8 +268,8 @@ public class QueriesHandling {
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
 			
 			if (result == null) {
-				// TODO: add handling for no combinations found case
-				System.out.println(noCombinationsFound(validManufacturers(category, type)));
+                System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
+                        "Academic Desks, Office Furnishings, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -286,8 +286,8 @@ public class QueriesHandling {
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
 			
 			if (result == null) {
-				// TODO: add handling for no combinations found case
-				System.out.println(noCombinationsFound(validManufacturers(category, type)));
+                System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
+                        "Office Furnishings, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -444,7 +444,7 @@ public class QueriesHandling {
 		return FilingArr;
 	}
 
-	private String validManufacturers(String fur, String type) {
+	private String validManufacturers(String fur, String type) {    // TODO: changes should be made here
         ArrayList<String> manuArrayList = new ArrayList<>();
 		StringBuilder result = new StringBuilder();
 		String resultString = new String();

@@ -61,6 +61,9 @@ public class Combinations {
      * @param A full Vector of Lamps (contains all the valid Lamps of type requested by the user)
      */
     public void uniqueCombinationLamp(int l, int sum1, int sum2, int quantity, Vector<Lamp> local, Vector<Lamp> A){
+        if(A.isEmpty()){
+            return;
+        }
         if (sum1 >= quantity && sum2 >= quantity){              // if bases and bulbs found are at least the quantity
             ArrayList<Furniture> comb = new ArrayList<>();
             for (Lamp lamp : local) {
@@ -113,6 +116,9 @@ public class Combinations {
      * @param A full Vector of Chairs (contains all the valid Chairs of type requested by the user)
      */
     public void uniqueCombinationChair(int l, int sum1, int sum2, int sum3, int sum4, int quantity, Vector<Chair> local, Vector<Chair> A) {
+        if(A.isEmpty()){
+            return;
+        }
         if (sum1 >= quantity && sum2 >= quantity && sum3 >= quantity && sum4 >= quantity) {
             ArrayList<Furniture> comb = new ArrayList<>();
             for (Chair chair : local) {
@@ -164,7 +170,10 @@ public class Combinations {
      * @param local current working/checking Vector of Desks
      * @param a full Vector of Desks (contains all the valid Desks of type requested by the user)
      */
-    public void uniqueCombinationDesk(int l, int sum1, int sum2, int sum3, int quantity, Vector<Desk> local, Vector<Desk> a) {
+    public void uniqueCombinationDesk(int l, int sum1, int sum2, int sum3, int quantity, Vector<Desk> local, Vector<Desk> A) {
+        if(A.isEmpty()){
+            return;
+        }
         if (sum1 >= quantity && sum2 >= quantity && sum3 >= quantity) {
             ArrayList<Furniture> comb = new ArrayList<>();
             for (Desk desk : local) {
@@ -175,18 +184,18 @@ public class Combinations {
         }
 
         // add another Desk from A to local to check.
-        for (int i = l; i < a.size(); i++){
+        for (int i = l; i < A.size(); i++){
             // check if the current Desk is repeated or not
-            if (i > l && a.get(i) == a.get(i-1)){
+            if (i > l && A.get(i) == A.get(i-1)){
                 continue; // skip this increment
             }
 
             // adding the next Desk into local
-            local.add(a.get(i));
+            local.add(A.get(i));
 
             // recursive call
-            uniqueCombinationDesk(i+1, sum1 + a.get(i).getLegs(), sum2 + a.get(i).getTop(),
-                    sum3 + a.get(i).getDrawer(), quantity, local, a);
+            uniqueCombinationDesk(i+1, sum1 + A.get(i).getLegs(), sum2 + A.get(i).getTop(),
+                    sum3 + A.get(i).getDrawer(), quantity, local, A);
 
             // Remove element from the combination
             local.remove(local.size() - 1);
@@ -216,7 +225,10 @@ public class Combinations {
      * @param local current working/checking Vector of Filings
      * @param a full Vector of Filings (contains all the valid Filings of type requested by the user)
      */
-    public void uniqueCombinationFiling(int l, int sum1, int sum2, int sum3, int quantity, Vector<Filing> local, Vector<Filing> a) {
+    public void uniqueCombinationFiling(int l, int sum1, int sum2, int sum3, int quantity, Vector<Filing> local, Vector<Filing> A) {
+        if(A.isEmpty()){
+            return;
+        }
         if (sum1 >= quantity && sum2 >= quantity && sum3 >= quantity) {
             ArrayList<Furniture> comb = new ArrayList<>();
             for (Filing filing : local) {
@@ -227,18 +239,18 @@ public class Combinations {
         }
 
         // add another Desk from A to local to check.
-        for (int i = l; i < a.size(); i++){
+        for (int i = l; i < A.size(); i++){
             // check if the current Desk is repeated or not
-            if (i > l && a.get(i) == a.get(i-1)){
+            if (i > l && A.get(i) == A.get(i-1)){
                 continue; // skip this increment
             }
 
             // adding the next Desk into local
-            local.add(a.get(i));
+            local.add(A.get(i));
 
             // recursive call
-            uniqueCombinationFiling(i+1, sum1 + a.get(i).getRails(), sum2 + a.get(i).getDrawers(),
-                    sum3 + a.get(i).getCabinet(), quantity, local, a);
+            uniqueCombinationFiling(i+1, sum1 + A.get(i).getRails(), sum2 + A.get(i).getDrawers(),
+                    sum3 + A.get(i).getCabinet(), quantity, local, A);
 
             // Remove element from the combination
             local.remove(local.size() - 1);
