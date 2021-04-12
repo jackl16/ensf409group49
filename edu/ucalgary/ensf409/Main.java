@@ -7,18 +7,27 @@ public class Main{
 
     public static void main(String[] args) {
         Scanner scannerObj = new Scanner(System.in);
+        boolean connected=false;
+        String userName; 
+        String passWord;
+        QueriesHandling myJDBC;
+
+       
+        do{
+        System.out.println('\n');
         System.out.println("Enter your username.");
 
-        String userName = scannerObj.nextLine();
+        userName = scannerObj.nextLine();
 
         System.out.println('\n');
         System.out.println("Enter your password.");
 
-        String passWord = scannerObj.nextLine();
+        passWord = scannerObj.nextLine();
 
-        QueriesHandling myJDBC = new QueriesHandling("jdbc:mysql://localhost/inventory",userName,passWord);
-        myJDBC.initializeConnection(userName,passWord);
-        
+        myJDBC = new QueriesHandling("jdbc:mysql://localhost/inventory",userName,passWord);
+        connected=myJDBC.initializeConnection(userName,passWord);
+       }while (!connected);
+
         String selectionBOO="yes";
         
         do{
@@ -418,6 +427,7 @@ public class Main{
      }while (selectionBOO.equals("yes"));
 
 
+     scannerObj.close();
     }
 
 }
