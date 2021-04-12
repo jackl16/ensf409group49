@@ -243,7 +243,7 @@ public class QueriesHandling {
  */
 
     public void callCombinations(String category, String type, int quantity){
-        if (category.equals("Lamp")){
+        if (category.equalsIgnoreCase("Lamp")){
 			Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsLamp(allCompatibleLamp(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -262,7 +262,7 @@ public class QueriesHandling {
 
 			}
 		} 
-        else if(category.equals("Chair")){
+        else if(category.equalsIgnoreCase("Chair")){
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsChair(allCompatibleChair(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -280,7 +280,7 @@ public class QueriesHandling {
                 }
 			}
         }
-        else if(category.equals("Desk")){
+        else if(category.equalsIgnoreCase("Desk")){
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsDesk(allCompatibleDesk(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -298,7 +298,7 @@ public class QueriesHandling {
                 }
 			}
         }
-        else if(category.equals("Filing")){
+        else if(category.equalsIgnoreCase("Filing")){
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsFiling(allCompatibleFiling(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
