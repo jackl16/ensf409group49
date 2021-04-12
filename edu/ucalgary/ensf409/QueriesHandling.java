@@ -4,22 +4,28 @@ import java.sql.*;
 import java.util.*;
 import java.io.*;
 
+/**
+ * @author Li, Jack <a href="mailto:jack.li2@ucalgary.ca">
+ * @author 
+ * @version 1.8
+ * @since 1.0
+ */
 
 
 public class QueriesHandling {
-    public final String DBURL;
-    public final String USERNAME; 
-    public final String PASSWORD; 
+    public final String DBURL; //String datamember that holds the directory of the database, cannot be changed after created.
+    public final String USERNAME; //String data member that has the username to the database, cannot be changed after created.
+    public final String PASSWORD; //String data member that has the password to the database, cannot be changed after created.
 
-    private ResultSet results;
-    private Connection dbConnect;
+    private ResultSet results; //ResultSet data member that holds values obtained from the database
+    private Connection dbConnect; //Connection data member that holds the connection to the database
 
 
 /**
- * 
- * @param url
- * @param username
- * @param password
+ * Three argument constructor, initializes the members DBURL, USERNAME, and PASSWORD.
+ * @param url the string that holds the value to be inserted into DBURL 
+ * @param username  the string that holds the value to be inserted into USERNAME
+ * @param password the string that holds the value to be inserted into PASSWORD
  */
 
     public QueriesHandling(String url, String username, String password){
@@ -29,8 +35,8 @@ public class QueriesHandling {
     }
 
 /**
- * 
- * @return
+ * Getter method, for DBURL
+ * @return the current DBURL for this instance
  */
 
     public String getDBURL(){
@@ -39,8 +45,8 @@ public class QueriesHandling {
     }
 
 /**
- * 
- * @return
+ * getter method for USERNAME
+ * @return this instance's USERNAME
  */
 
     public String getUSERNAME(){
@@ -49,8 +55,8 @@ public class QueriesHandling {
     }
 
 /**
- * 
- * @return
+ * getter method for PASSWORD
+ * @return this instance's PASSWORD
  */
 
     public String getPASSWORD(){
@@ -59,23 +65,27 @@ public class QueriesHandling {
     }
 
 /**
- * 
- * @param a
- * @param b
+ * Creates a connection to the database, using the username and password as arguments.
+ * @param userName the username of the user as a string
+ * @param passWord the password of the user as a string
+ * @return the state of the connection as a boolean data member
  */
 
-    public void initializeConnection(String a, String b){
+    public boolean initializeConnection(String userName, String passWord){
         try{
-            dbConnect= DriverManager.getConnection("jdbc:mysql://localhost/inventory", a, b);
+            dbConnect= DriverManager.getConnection("jdbc:mysql://localhost/inventory", userName, passWord);
+            return true;
         } catch (SQLException e){
-            e.printStackTrace();
+            System.out.println("Error, password or username was incorrect.");
+            return false;
         }
     }
 
 /**
- * 
- * @param furniture
- * @return
+ * Retrieves a specific category of furniture and adds all its characteristics to the results data base
+ * afterwards, it appends it to a string buffer which is later converted to a String, which is returned
+ * @param furniture the category of the furniture as a string
+ * @return a string that contains all the
  */
 
     public String selectFurniture(String furniture){
@@ -146,11 +156,14 @@ public class QueriesHandling {
     }
 
 /**
- * 
- * @param furniture
- * @param specificVar
- * @param inputSearch
- * @return
+ * This method recieves 3 parameters containing the category of furniture, the desired type of identifier
+ * and the specific identifier in order to use the database to find those furnitures that match
+ * the given parameters. It then appends the desired results to a string buffer which is later
+ * converted into a string to be passed.
+ * @param furniture this passes the category of the furniture as a string
+ * @param specificVar this passes the desired type of identifier as a string
+ * @param inputSearch this passes the specific identifier as a string
+ * @return a string which contains the data of the furniture which satisfies the search requirements
  */
  
 
@@ -221,8 +234,13 @@ public class QueriesHandling {
 
     }
 
-
-
+/**
+ * This method takes in 3 parameter and calls combinations from Combinations.java and uses other methods to attempt to obtain
+ * the best combination. Later, it calls a method to create an order form.
+ * @param category the specific category of the furniture as a string.
+ * @param type the specific type of furniture the user is looking for as a string.
+ * @param quantity the number of furniture the user requests as an integer.
+ */
 
     public void callCombinations(String category, String type, int quantity){
         if (category.equals("Lamp")){
@@ -232,7 +250,7 @@ public class QueriesHandling {
 			
 			if (result == null) {
                 System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
-                        "Office Furnishings, Furniture Goods, Fine Office Supplies.");
+                "Office Furnishings, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -269,7 +287,7 @@ public class QueriesHandling {
 			
 			if (result == null) {
                 System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
-                        "Academic Desks, Office Furnishings, Furniture Goods, Fine Office Supplies.");
+                "Academic Desks, Office Furnishings, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -284,10 +302,10 @@ public class QueriesHandling {
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsFiling(allCompatibleFiling(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
-			
+		
 			if (result == null) {
                 System.out.println("Order cannot be fulfilled based on current inventory. Suggested manufacturers are " +
-                        "Office Furnishings, Furniture Goods, Fine Office Supplies.");
+                "Office Furnishings, Furniture Goods, Fine Office Supplies.");
 			} else {
 				System.out.println("Items Ordered: ");
 				result.print();
@@ -300,8 +318,15 @@ public class QueriesHandling {
 			}
         }
 
-        // TODO: else if for other cases
+    
     }
+
+/**
+ * This method retrieves all the lamps with the same type from the database and looks for all 
+ * of the lamps that fit the criteria and adds them to a lamp arraylist. 
+ * @param type the specific type of lamp that one is looking for as a string
+ * @return an arraylist containing furniture class lamp with the compatible lamps 
+ */
 
     private ArrayList<Lamp> allCompatibleLamp(String type)
     {
@@ -332,7 +357,12 @@ public class QueriesHandling {
 		}
 		return lampArr;
     }
-
+/**
+ * This method retrieves all the desks with the same type from the database and looks for all 
+ * of the desks that fit the criteria and adds them to a desk arraylist. 
+ * @param type the specific type of desk that one is looking for as a string
+ * @return an arraylist containing furniture class desk with the compatible desks 
+ */
     private ArrayList<Desk> allCompatibleDesk (String type) {
 		ArrayList<Desk> DeskArr = new ArrayList<>();
 		try {
@@ -367,7 +397,12 @@ public class QueriesHandling {
 		}
 		return DeskArr;
 	}
-
+/**
+ * This method retrieves all the chairs with the same type from the database and looks for all 
+ * of the chairss that fit the criteria and adds them to a chair arraylist. 
+ * @param type the specific type of chair that one is looking for as a string.
+ * @return an arraylist containing furniture class chair with the compatible chairs. 
+ */
     private ArrayList<Chair> allCompatibleChair (String type) {
 		ArrayList<Chair> ChairArr = new ArrayList<>();
 		try {
@@ -407,7 +442,12 @@ public class QueriesHandling {
 		}
 		return ChairArr;
 	}
-
+/**
+ * This method retrieves all the filings with the same type from the database and looks for all 
+ * of the filings that fit the criteria and adds them to a filing arraylist. 
+ * @param type the specific type of filing that one is looking for as a string
+ * @return an arraylist containing furniture class filing with the compatible filings; 
+ */
 	private ArrayList<Filing> allCompatibleFiling(String type) {
 		ArrayList<Filing> FilingArr = new ArrayList<>();
 		try {
@@ -443,8 +483,18 @@ public class QueriesHandling {
 		}
 		return FilingArr;
 	}
-
-	private String validManufacturers(String fur, String type) {    // TODO: changes should be made here
+    
+/**
+ * This method looks for all the possible manufacturers that manufacture the specific type of furniture
+ * that the user is looking for. It starts by grabbing all the furniture that has the correct type
+ * from the database and adds it to a stringBuilder variable. It then looks for all the manuID of all the correct
+ * furniture and appends it to the stringBuilder variable. Later, it turns the stringBuilder into a string
+ * which it then returns.
+ * @param fur the category of the furniture as a string.
+ * @param type the type of furniture as a string.
+ * @return the valid manufacturers which supply the desired furniture
+ */
+	private String validManufacturers(String fur, String type) {     // TODO: changes should be made here
         ArrayList<String> manuArrayList = new ArrayList<>();
 		StringBuilder result = new StringBuilder();
 		String resultString = new String();
@@ -466,7 +516,14 @@ public class QueriesHandling {
         }
         return resultString;
     }
-	
+
+/**
+ * This method pulls from the manufacturer database and picks the manufacturer name that matches
+ * the provided ManuID and returns it as a string.
+ * @param manuID the specific manuID that is being looked for.
+ * @return the manufacturer name corresponding to the provided ManuID.
+ */
+
 	private String manufacturerName (String manuID) {
 		String result = new String();
 		try {
@@ -481,10 +538,27 @@ public class QueriesHandling {
 		return result;
 	}
 	
+/**
+ * This method takes in 1 parameter and is called when an order cannot be carried through, it returns a message
+ * saying exactly that and gives the suggested manufacturer in a string format.
+ * @param manu the manufacturer to be returned as a string.
+ * @return a message containing the manufacturer as a string.
+ */
 	private String noCombinationsFound (String manu) {
 		return "Order cannot be fulfilled based on current inventory. Suggested manufacturers are " + manu + ".";
 	}
-	
+
+/**
+ * This method takes in 4 parameters containing the furniture category, type and quantity, as 
+ * well as the combination which is required to create that kind of furniture. It uses a 
+ * StringBuffer to create the format for the output text, then creates the file to input the 
+ * order into. It then makes sure the file is clean and then writes to the file.
+ * @param category the category of the furniture as a string.
+ * @param type the type of the furniture as a string.
+ * @param quantity the number of furniture requested to make as an integer.
+ * @param result the found combination of furniture that is required as a class Combination.
+ */
+
 	private void createOrderForm(String category, String type, int quantity, Combination result){
 		StringBuffer format = new StringBuffer();
 		format.append("Furniture Order Form");
@@ -521,7 +595,14 @@ public class QueriesHandling {
         }
 	}
 
-
+/**
+ * This method takes in two parameters containing the category of the furniture and the 
+ * id of the furniture and then removes it from the database so that it cannot be used again.
+ * It accesses the database with the specific category and then uses the id to remove 
+ * the specfic furniture that has a matching id.
+ * @param category the category of the furniture as a string.
+ * @param id the id of the furniture to be removed as a string.
+ */
     public void removeFurniture(String category, String id){
         try {
             String query = "DELETE FROM "+category+" WHERE ID = ?";
@@ -530,7 +611,6 @@ public class QueriesHandling {
             myStmt.setString(1, id);
                         
             int rowCount = myStmt.executeUpdate();
-            System.out.println("Rows affected: " + rowCount);
             
             myStmt.close();
 
@@ -543,10 +623,12 @@ public class QueriesHandling {
 
 
 
-
+/**
+ * This method closes the connection to the database and catches any errors that 
+ * may occur during this process.
+ */
     public void close(){
         try{
-            results.close();
             dbConnect.close();
         }catch (SQLException e){
             e.printStackTrace();
