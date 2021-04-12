@@ -317,6 +317,8 @@ public class QueriesHandling {
 
 			}
         }
+	    
+	   // TODO: else if for other cases
 
     
     }
