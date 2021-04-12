@@ -184,14 +184,14 @@ public class Combinations {
         }
 
         // add another Desk from A to local to check.
-        for (int i = l; i < a.size(); i++){
+        for (int i = l; i < A.size(); i++){
             // check if the current Desk is repeated or not
-            if (i > l && a.get(i) == a.get(i-1)){
+            if (i > l && A.get(i) == A.get(i-1)){
                 continue; // skip this increment
             }
 
             // adding the next Desk into local
-            local.add(a.get(i));
+            local.add(A.get(i));
 
             // recursive call
             uniqueCombinationDesk(i+1, sum1 + A.get(i).getLegs(), sum2 + A.get(i).getTop(),
@@ -239,14 +239,14 @@ public class Combinations {
         }
 
         // add another Desk from A to local to check.
-        for (int i = l; i < a.size(); i++){
+        for (int i = l; i < A.size(); i++){
             // check if the current Desk is repeated or not
-            if (i > l && a.get(i) == a.get(i-1)){
+            if (i > l && A.get(i) == A.get(i-1)){
                 continue; // skip this increment
             }
 
             // adding the next Desk into local
-            local.add(a.get(i));
+            local.add(A.get(i));
 
             // recursive call
             uniqueCombinationFiling(i+1, sum1 + A.get(i).getRails(), sum2 + A.get(i).getDrawers(),
