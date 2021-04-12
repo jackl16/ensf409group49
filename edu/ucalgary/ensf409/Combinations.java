@@ -194,8 +194,8 @@ public class Combinations {
             local.add(a.get(i));
 
             // recursive call
-            uniqueCombinationDesk(i+1, sum1 + a.get(i).getLegs(), sum2 + a.get(i).getTop(),
-                    sum3 + a.get(i).getDrawer(), quantity, local, a);
+            uniqueCombinationDesk(i+1, sum1 + A.get(i).getLegs(), sum2 + A.get(i).getTop(),
+                    sum3 + A.get(i).getDrawer(), quantity, local, A);
 
             // Remove element from the combination
             local.remove(local.size() - 1);
@@ -249,8 +249,8 @@ public class Combinations {
             local.add(a.get(i));
 
             // recursive call
-            uniqueCombinationFiling(i+1, sum1 + a.get(i).getRails(), sum2 + a.get(i).getDrawers(),
-                    sum3 + a.get(i).getCabinet(), quantity, local, a);
+            uniqueCombinationFiling(i+1, sum1 + A.get(i).getRails(), sum2 + A.get(i).getDrawers(),
+                    sum3 + A.get(i).getCabinet(), quantity, local, A);
 
             // Remove element from the combination
             local.remove(local.size() - 1);
