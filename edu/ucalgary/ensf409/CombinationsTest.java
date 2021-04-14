@@ -14,10 +14,6 @@ import edu.ucalgary.ensf409.Combinations;
 
 
 public class CombinationsTest{
-
-
-
-
 	/**
 	 * This is testing whether constructor of Combination works.
 	 *  It's private variable, totalPrice should equal sum of price of each Furniture objects 
@@ -171,7 +167,7 @@ public class CombinationsTest{
 		Vector<Lamp>local = new Vector<>();
 		a.uniqueCombinationLamp(0,0,0,1,local,A);
 		Combination result = a.bestCombination();
-		assertNull("result is not null",result);
+		assertNull("result is not null and there is a Combination that makes lamps possible",result);
 	}
 	/**
 	 * Testing uniqueCombinationLamp & bestCombination when empty ArrayList<Lamp> is passed as an argument
@@ -185,7 +181,7 @@ public class CombinationsTest{
 		Vector<Lamp>local = new Vector<>();
 		a.uniqueCombinationLamp(0,0,0,1,local,A);
 		Combination result = a.bestCombination();
-		assertNull("result is not null",result);
+		assertNull("result is not null and there is a Combination that makes lamps possible",result);
 	}
 	/**
 	 * Testing uniqueCombinationLamp & bestCombination when there is only one valid combination found 
@@ -288,8 +284,47 @@ public class CombinationsTest{
 		assertNull("There is a Combination that makes requested number of chairs",result);
 	}
 
+	/**
+	 * Testing uniqueCombinationChair & bestCombination when empty ArrayList<Chair> is passed as an argument
+	 * returning Combination object must be null.
+	 */
+	@Test
+	public void testEmptyArrayListChair(){
+		Combinations a = new Combinations();
+		ArrayList<Chair>arr = new ArrayList<>();
+		Vector<Chair>A = new Vector<>(arr);
+		Vector<Chair>local = new Vector<>();
+		a.uniqueCombinationChair(0,0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertNull("There is a Combination that makes requested number of chairs",result);
+	}
 
 
+	/**
+	 * Testing uniqueCombinationChair & bestCombination when there is only one valid combination found 
+	 */
+	@Test
+	public void testOneCombinationChair()
+	{
+		Combinations a = new Combinations();
+		ArrayList<Chair>arr = new ArrayList<>();
+		Chair one = new Chair("C109",200, "005","Mesh",1,0,0,1);
+		Chair two = new Chair("C192",100, "005","Mesh",1,0,0,1);
+		Chair three = new Chair("C123",300,"001","Mesh",0,1,1,0);
+		arr.add(one);
+		arr.add(two);
+		arr.add(three);
+		Vector<Chair>A = new Vector<>(arr);
+		Vector<Chair>local = new Vector<>();
+		a.uniqueCombinationChair(0,0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertEquals("there exists more than one Combination and the totalPrice of result does not match expected value",400, result.totalPrice);
+	}
+
+	/**
+	 * Tests uniqueCombinationDesk &bestCombination for 1 Desk. UniqueCombinationDesk stores all possible combinations that may make 1 Desk. Then bestCombination 
+	 * compares the totalPrice variable in each then returns the Combination object with lowest totalPrice value. 
+	 */
     @Test
 	public void testBestCombinationsDesk() {
 		Combinations a = new Combinations();
@@ -312,9 +347,12 @@ public class CombinationsTest{
 		expected.add(three);
 		Combination expectedResult = new Combination(expected);
 		
-		assertEquals("they are equal",expectedResult.totalPrice,result.totalPrice);
+		assertEquals("total price of result does not match totalPrice of expectedResult",expectedResult.totalPrice,result.totalPrice);
 	}
-
+	/**
+	 * Tests uniqueCombinationDesk & bestCombination for more than 2 chairs. Here we test the case when the user requests 2 Chairs.
+	 * It returns a Combination object with lowest totalPrice available in the Combination Arraylist
+	 */
 	@Test
 	public void testBestCombinationsMultipleDesk() {
 		Combinations a = new Combinations();
@@ -340,8 +378,71 @@ public class CombinationsTest{
 		expected.add(three);
 		Combination expectedResult = new Combination(expected);
 		
-		assertEquals("they are equal",expectedResult.totalPrice,result.totalPrice);
+		assertEquals("total price of result does not match totalPrice of expectedResult",expectedResult.totalPrice,result.totalPrice);
 	}
+
+	
+	/**
+	 * Test bestCombinations when no Combinations exist. Null should be returned. 
+	 */
+	@Test
+	public void NoCombinationDesk(){
+		Combinations a = new Combinations();
+		ArrayList<Desk>arr = new ArrayList<>();
+		Desk one = new Desk("D1909",10, "005","Standing",1,0,0);
+		Desk two = new Desk("D109",100, "005","Standing",0,0,1);
+		arr.add(one);
+		arr.add(two);
+		Vector<Desk>A = new Vector<>(arr);
+		Vector<Desk>local = new Vector<>();
+		a.uniqueCombinationDesk(0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertNull("There is a Combination that makes requested number of Desks",result);
+	}
+
+	/**
+	 * Testing uniqueCombinationDesk & bestCombination when empty ArrayList<Desk> is passed as an argument
+	 * returning Combination object must be null.
+	 */
+	@Test
+	public void testEmptyArrayListDesk(){
+		Combinations a = new Combinations();
+		ArrayList<Desk>arr = new ArrayList<>();
+		Vector<Desk>A = new Vector<>(arr);
+		Vector<Desk>local = new Vector<>();
+		a.uniqueCombinationDesk(0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertNull("There is a Combination that makes requested number of chairs",result);
+	}
+
+	
+	/**
+	 * Testing uniqueCombinationDesk & bestCombination when there is only one valid combination found 
+	 */
+	@Test
+	public void testOneCombinationDesk()
+	{
+		Combinations a = new Combinations();
+		ArrayList<Desk>arr = new ArrayList<>();
+		Desk one = new Desk("D1909",10, "005","Standing",1,1,0);
+		Desk two = new Desk("D109",100, "005","Standing",0,0,1);
+		Desk three = new Desk("D109",100, "005","Standing",1,0,0);
+		arr.add(one);
+		arr.add(two);
+		arr.add(three);
+		Vector<Desk>A = new Vector<>(arr);
+		Vector<Desk>local = new Vector<>();
+		a.uniqueCombinationDesk(0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertEquals("there exists more than one Combination and the totalPrice of result does not match expected value",110, result.totalPrice);
+	}
+
+
+	/**
+	 * Tests uniqueCombinationFiling &bestCombination for 1 Filing. UniqueCombinationFiling stores all possible combinations 
+	 * that may make 1 Filing. Then bestCombination 
+	 * compares the totalPrice variable in each then returns the Combination object with lowest totalPrice value. 
+	 */
 
 	@Test
 	public void testBestCombinationsFiling()
@@ -368,9 +469,14 @@ public class CombinationsTest{
 		expected.add(four);
 		Combination expectedResult = new Combination(expected);
 		
-		assertEquals("they are equal",expectedResult.totalPrice,result.totalPrice);
+		assertEquals("the total price of expectedResult doesn't match totalPrice of result",expectedResult.totalPrice,result.totalPrice);
 	}
-
+	/**
+	 * Tests uniqueCombinationFiling &bestCombination for more than 1 Filing. Here we use 2 as example
+	 * UniqueCombinationFiling stores all possible combinations 
+	 * that may make 2 Filing. Then bestCombination 
+	 * compares the totalPrice variable in each then returns the Combination object with lowest totalPrice value. 
+	 */
 	@Test
 	public void testBestCombinationsMultipleFiling()
 	{
@@ -399,8 +505,63 @@ public class CombinationsTest{
 
 		Combination expectedResult = new Combination(expected);
 		
-		assertEquals("they are equal",expectedResult.totalPrice,result.totalPrice);
+		assertEquals("the total price of expectedResult doesn't match totalPrice of result",expectedResult.totalPrice,result.totalPrice);
 	}
+
+	/**
+	 * Test bestCombinations when no Combinations exist. Null should be returned. 
+	 */
+	@Test
+	public void NoCombinationFiling(){
+		Combinations a = new Combinations();
+		ArrayList<Filing>arr = new ArrayList<>();
+		Filing one = new Filing("D199",10, "005","Small",1,1,0);
+		Filing two = new Filing("D19",20, "005","Small",0,0,0);
+		arr.add(one);
+		arr.add(two);
+		Vector<Filing>A = new Vector<>(arr);
+		Vector<Filing>local = new Vector<>();
+		a.uniqueCombinationFiling(0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertNull("There is a Combination that makes requested number of Desks",result);
+	}
+
+	/**
+	 * Testing uniqueCombinationFiling & bestCombination when empty ArrayList<Filing> is passed as an argument
+	 * returning Combination object must be null.
+	 */
+	@Test
+	public void testEmptyArrayListFiling(){
+		Combinations a = new Combinations();
+		ArrayList<Filing>arr = new ArrayList<>();
+		Vector<Filing>A = new Vector<>(arr);
+		Vector<Filing>local = new Vector<>();
+		a.uniqueCombinationFiling(0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertNull("There is a Combination that makes requested number of chairs",result);
+	}
+
+	/**
+	 * Testing uniqueCombinationFiling & bestCombination when there is only one valid combination found 
+	 */
+	@Test
+	public void testOneCombinationFiling()
+	{
+		Combinations a = new Combinations();
+		ArrayList<Filing>arr = new ArrayList<>();
+		Filing one = new Filing("D199",10, "005","Small",1,1,0);
+		Filing two = new Filing("D19",20, "005","Small",0,0,1);
+		Filing three = new Filing("D1",20, "005","Small",1,0,0);
+		arr.add(one);
+		arr.add(two);
+		arr.add(three);
+		Vector<Filing>A = new Vector<>(arr);
+		Vector<Filing>local = new Vector<>();
+		a.uniqueCombinationFiling(0,0,0,0,1,local,A);
+		Combination result = a.bestCombination();
+		assertEquals("there exists more than one Combination and the totalPrice of result does not match expected value",30, result.totalPrice);
+	}
+
 	
 
     
