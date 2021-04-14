@@ -562,7 +562,26 @@ public class CombinationsTest{
 		assertEquals("there exists more than one Combination and the totalPrice of result does not match expected value",30, result.totalPrice);
 	}
 
-	
+	/**
+	 * Testing getFormat() to see if it returns a valid string
+	 */
+	@Test 
+	public void testGetFormat(){
+		ArrayList<Furniture> furnitures= new ArrayList<Furniture>();
+        Furniture one = new Furniture("C1320", 50, "000","mesh");
+        Furniture two = new Furniture("C3405", 350, "003","executive");
+        Furniture three = new Furniture("C2078", 1050, "100","mesh");
+        furnitures.add(one);
+        furnitures.add(two);
+        furnitures.add(three);
+    
+        Combination testobj = new Combination(furnitures);
+		String result = testobj.getFormat();
+		
+		String expectedResult = "ID: C1320"+"\n"+"ID: C3405"+"\n"+"ID: C2078"+"\n"+"Total Price: 1450";
+		assertEquals("result of getFormat did not match the expected String ",expectedResult, result);
+
+	}
 
     
 
