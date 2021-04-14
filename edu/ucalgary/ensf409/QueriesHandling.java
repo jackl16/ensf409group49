@@ -237,13 +237,15 @@ public class QueriesHandling {
 /**
  * This method takes in 3 parameter and calls combinations from Combinations.java and uses other methods to attempt to obtain
  * the best combination. Later, it calls a method to create an order form.
+ * Note: This method changes the database frequently every time an order is fulfilled hence unit testing with random order for
+ * this method is unreliable. All functionalalities of this method are thoroughly tested in CombinationsTest, however.
  * @param category the specific category of the furniture as a string.
  * @param type the specific type of furniture the user is looking for as a string.
  * @param quantity the number of furniture the user requests as an integer.
  */
 
     public void callCombinations(String category, String type, int quantity){
-        if (category.equals("Lamp")){
+        if (category.equalsIgnoreCase("Lamp")){
 			Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsLamp(allCompatibleLamp(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -262,7 +264,7 @@ public class QueriesHandling {
 
 			}
 		} 
-        else if(category.equals("Chair")){
+        else if(category.equalsIgnoreCase("Chair")){
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsChair(allCompatibleChair(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -280,7 +282,7 @@ public class QueriesHandling {
                 }
 			}
         }
-        else if(category.equals("Desk")){
+        else if(category.equalsIgnoreCase("Desk")){
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsDesk(allCompatibleDesk(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -298,7 +300,7 @@ public class QueriesHandling {
                 }
 			}
         }
-        else if(category.equals("Filing")){
+        else if(category.equalsIgnoreCase("Filing")){
             Combinations combinationSet = new Combinations();
 			combinationSet.findAllCombinationsFiling(allCompatibleFiling(type), quantity);
 			Combination result = combinationSet.bestCombination(); // this should contain the best Combination
@@ -484,70 +486,6 @@ public class QueriesHandling {
 			e.printStackTrace();
 		}
 		return FilingArr;
-	}
-    
-/**
- * This method looks for all the possible manufacturers that manufacture the specific type of furniture
- * that the user is looking for. It starts by grabbing all the furniture that has the correct type
- * from the database and adds it to a stringBuilder variable. It then looks for all the manuID of all the correct
- * furniture and appends it to the stringBuilder variable. Later, it turns the stringBuilder into a string
- * which it then returns.
- * @param fur the category of the furniture as a string.
- * @param type the type of furniture as a string.
- * @return the valid manufacturers which supply the desired furniture
- */
-	private String validManufacturers(String fur, String type) {     // TODO: changes should be made here
-        ArrayList<String> manuArrayList = new ArrayList<>();
-		StringBuilder result = new StringBuilder();
-		String resultString = new String();
-        try {
-            Statement stmt = dbConnect.createStatement();
-            this.results = stmt.executeQuery("SELECT * FROM " + fur +" WHERE Type = '" + type + "'");
-
-            while(results.next()){
-                String a = results.getString("ManuID");
-                if(!manuArrayList.contains(a)){
-					manuArrayList.add(a);
-					result.append(manufacturerName(a));
-					result.append(", ");
-				}
-            }
-			resultString = result.substring(0, result.length()-2); // remove the last ", "
-        } catch (SQLException e){
-            e.printStackTrace();
-        }
-        return resultString;
-    }
-
-/**
- * This method pulls from the manufacturer database and picks the manufacturer name that matches
- * the provided ManuID and returns it as a string.
- * @param manuID the specific manuID that is being looked for.
- * @return the manufacturer name corresponding to the provided ManuID.
- */
-
-	private String manufacturerName (String manuID) {
-		String result = new String();
-		try {
-			Statement stmt = dbConnect.createStatement();
-            ResultSet resultset = stmt.executeQuery("SELECT * FROM Manufacturer WHERE ManuID = '" + manuID + "'");
-			while(resultset.next()){
-				result = resultset.getString("Name");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
-	
-/**
- * This method takes in 1 parameter and is called when an order cannot be carried through, it returns a message
- * saying exactly that and gives the suggested manufacturer in a string format.
- * @param manu the manufacturer to be returned as a string.
- * @return a message containing the manufacturer as a string.
- */
-	private String noCombinationsFound (String manu) {
-		return "Order cannot be fulfilled based on current inventory. Suggested manufacturers are " + manu + ".";
 	}
 
 /**
