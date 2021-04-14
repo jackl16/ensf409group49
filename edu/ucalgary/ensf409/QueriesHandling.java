@@ -237,6 +237,8 @@ public class QueriesHandling {
 /**
  * This method takes in 3 parameter and calls combinations from Combinations.java and uses other methods to attempt to obtain
  * the best combination. Later, it calls a method to create an order form.
+ * Note: This method changes the database frequently every time an order is fulfilled hence unit testing with random order for
+ * this method is unreliable. All functionalalities of this method are thoroughly tested in CombinationsTest, however.
  * @param category the specific category of the furniture as a string.
  * @param type the specific type of furniture the user is looking for as a string.
  * @param quantity the number of furniture the user requests as an integer.
