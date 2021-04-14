@@ -2,6 +2,13 @@ package edu.ucalgary.ensf409;
 import org.junit.*;
 import static org.junit.Assert.*;
 
+/**
+ * @author Tavakol Moghaddam, Sina <a href="mailto:sina.tavakolmoghadda@ucalgary.ca">
+ * sina.tavakolmoghadda@ucalgary.ca</a>
+ * @version 1.1
+ * @since 1.0
+ */
+
 public class FurnitureTest{
 
 	public FurnitureTest(){
@@ -9,6 +16,9 @@ public class FurnitureTest{
 	}
 
 	@Test
+    /**
+     *  Testing the constructor of the class Furniture to see if all data members initiliaze correctly.
+     */
 	public void testFurniture() {
         String id="C9890";
         int price=150;
@@ -27,6 +37,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
      public void testGetID() {
         String id="C9890";
         int price=150;
@@ -41,6 +54,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetPRICE() {
         String id="C9890";
         int price=150;
@@ -55,6 +71,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetMANUID() {
         String id="C9890";
         int price=150;
@@ -69,6 +88,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetTYPE() {
         String id="C9890";
         int price=150;
@@ -83,6 +105,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the constructor of the class Chair to see if all data members initiliaze correctly.
+     */
     public void testChair() {
         String id="C9890";
         int price=150;
@@ -108,6 +133,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
      public void testGetLegs() {
         String id="C9890";
         int price=150;
@@ -126,6 +154,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetArms() {
         String id="C9890";
         int price=150;
@@ -144,6 +175,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetSeat() {
         String id="C9890";
         int price=150;
@@ -162,6 +196,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetCushion() {
         String id="C9890";
         int price=150;
@@ -180,6 +217,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
      public void testSetLegs() {
         String id="C9890";
         int price=150;
@@ -198,6 +238,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetArms() {
         String id="C9890";
         int price=150;
@@ -216,6 +259,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetSeat() {
         String id="C9890";
         int price=150;
@@ -234,6 +280,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetCushion() {
         String id="C9890";
         int price=150;
@@ -252,6 +301,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the constructor of the class Desk to see if all data members initiliaze correctly.
+     */
     public void testDesk() {
         String id="C9890";
         int price=150;
@@ -275,6 +327,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
      public void testGetLegs2() {
         String id="C9890";
         int price=150;
@@ -292,6 +347,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetTop() {
         String id="C9890";
         int price=150;
@@ -309,6 +367,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetDrawer() {
         String id="C9890";
         int price=150;
@@ -326,6 +387,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
      public void testSetLegs2() {
         String id="C9890";
         int price=150;
@@ -343,6 +407,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetTop() {
         String id="C9890";
         int price=150;
@@ -360,6 +427,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetDrawer() {
         String id="C9890";
         int price=150;
@@ -377,6 +447,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the constructor of the class Lamp to see if all data members initiliaze correctly.
+     */
     public void testLamp() {
         String id="C9890";
         int price=150;
@@ -398,6 +471,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
      public void testGetBase() {
         String id="C9890";
         int price=150;
@@ -414,6 +490,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetBulb() {
         String id="C9890";
         int price=150;
@@ -430,6 +509,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
      public void testSetBase() {
         String id="C9890";
         int price=150;
@@ -446,6 +528,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetBulb() {
         String id="C9890";
         int price=150;
@@ -462,6 +547,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the constructor of the class Filing to see if all data members initiliaze correctly.
+     */
     public void testFiling() {
         String id="C9890";
         int price=150;
@@ -485,6 +573,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
      public void testGetRails() {
         String id="C9890";
         int price=150;
@@ -502,6 +593,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetDrawers() {
         String id="C9890";
         int price=150;
@@ -519,6 +613,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the getter method to see if it returns correctly.
+     */
     public void testGetCabinet() {
         String id="C9890";
         int price=150;
@@ -536,6 +633,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
      public void testSetRails() {
         String id="C9890";
         int price=150;
@@ -553,6 +653,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetDrawers() {
         String id="C9890";
         int price=150;
@@ -570,6 +673,9 @@ public class FurnitureTest{
     }
 
     @Test
+    /**
+     *  Testing the setter method to see if it sets the value correctly.
+     */
     public void testSetCabinet() {
         String id="C9890";
         int price=150;
