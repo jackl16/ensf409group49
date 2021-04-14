@@ -7,11 +7,13 @@ import java.util.Vector;
 
 import org.junit.Test;
 
-import edu.ucalgary.ensf409.Combinations;
-
-
-
-
+/**
+ * @author Kwon, Minseung <a href="mailto:minseung.kwon@ucalgary.ca">
+ * minseung.kwon@ucalgary.ca</a>
+ * @author Truong,Viet An
+ * @version 1.4
+ * @since 1.0
+ */
 
 public class CombinationsTest{
 	/**
